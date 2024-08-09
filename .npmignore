@@ -1,0 +1,10 @@
+package-lock.json
+node_modules
+test
+sitemap.json
+.idea
+*.iml
+.eslintrc.js
+.eslintrc.cjs
+.prettierrc.json
+.gitignore

@@ -1,0 +1,33 @@
+{
+    "name": "lite-sse-chunk",
+    "version": "0.0.1",
+    "description": "",
+    "main": "index.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "test": "jest",
+        "watch": "jest --watchAll"
+    },
+    "dependencies": {
+        "jest": "^29.7.0"
+    },
+    "keywords": [
+        "sse",
+        "server send event",
+        "stream",
+        "chunk"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+git@github.com:xesam/lite-sse-chunk.js"
+    },
+    "bugs": {
+        "url": "https://github.com/xesam/lite-sse-chunk.js"
+    },
+    "homepage": "https://github.com/xesam/lite-sse-chunk.js",
+    "author": "xesam",
+    "email": "xesamguo@gmail.com",
+    "license": "MIT"
+}

@@ -1,0 +1,64 @@
+const { TextStream, createParser } = require('..');
+
+describe('streams[reader]', function() {
+    function createTestChunks(prefix = 'data: ') {
+        const messages = [
+            {
+                content: 'hello'
+            },
+            {
+                content: 'world!'
+            },
+            {
+                content: 'the last'
+            }
+        ];
+        return messages.map(message => `${prefix}${JSON.stringify(message)}\n\n`);
+    }
+
+    test('custom data regex with reader', () => {
+        const parser = createParser({ regex: /chunk: (.*)\n\n/g });
+        const stream = new TextStream(parser);
+        const listener1 = jest.fn();
+        stream.addChunkListener(listener1);
+
+        for (const chunk of createTestChunks('chunk: ')) {
+            stream.receive(chunk);
+        }
+        expect(listener1).toHaveBeenNthCalledWith(1, ['{"content":"hello"}']);
+        expect(listener1).toHaveBeenNthCalledWith(2, ['{"content":"world!"}']);
+        expect(listener1).toHaveBeenNthCalledWith(3, ['{"content":"the last"}']);
+    });
+
+    test('custom message processor with reader', () => {
+        const parser = createParser({
+            messageProcessor: JSON.parse
+        });
+        const stream = new TextStream(parser);
+        const listener1 = jest.fn();
+        stream.addChunkListener(listener1);
+
+        for (const chunk of createTestChunks('data: ')) {
+            stream.receive(chunk);
+        }
+        expect(listener1).toHaveBeenNthCalledWith(1, [{ 'content': 'hello' }]);
+        // expect(listener1).toHaveBeenNthCalledWith(2, [{ 'content': 'world!' }]);
+        // expect(listener1).toHaveBeenNthCalledWith(3, [{ 'content': 'the last' }]);
+    });
+    test('custom data regex and message processor with reader', () => {
+        const parser = createParser({
+            regex: /chunk: (.*)\n\n/g,
+            messageProcessor: JSON.parse
+        });
+        const stream = new TextStream(parser);
+        const listener1 = jest.fn();
+        stream.addChunkListener(listener1);
+
+        for (const chunk of createTestChunks('chunk: ')) {
+            stream.receive(chunk);
+        }
+        expect(listener1).toHaveBeenNthCalledWith(1, [{ 'content': 'hello' }]);
+        // expect(listener1).toHaveBeenNthCalledWith(2, [{ 'content': 'world!' }]);
+        // expect(listener1).toHaveBeenNthCalledWith(3, [{ 'content': 'the last' }]);
+    });
+});

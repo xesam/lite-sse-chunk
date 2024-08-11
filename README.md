@@ -1,10 +1,30 @@
 # Lite SSE(sever send event) Chunk
 
-a lite tool for parse sse chunk.
+a lite tool to parse sse chunk.
 
 ![stream profile](./stream.png)
 
-## 使用
+```text
+< chunk1 start
+data: hello 
+
+data: world!
+
+data: this is
+< chunk1 end
+
+==> messages : ['hello', 'world!']
+
+< chunk2 start
+last!
+
+< chunk2 end
+
+===> messages : ['this is last!']
+
+```
+
+## Usage
 
 ```javascript
 const { TextStream } = require('lite-sse-chunk');

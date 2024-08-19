@@ -3,4 +3,3 @@
 node_modules
 miniprogram_npm
 .npmrc
-sample/project.private.config.json

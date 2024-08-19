@@ -1,4 +1,4 @@
-const { TextStream, createParser } = require('..');
+const { TextStream, createReader } = require('..');
 
 describe('streams[reader]', function() {
     function createTestChunks(prefix = 'data: ') {
@@ -17,7 +17,7 @@ describe('streams[reader]', function() {
     }
 
     test('custom data regex with reader', () => {
-        const parser = createParser({ regex: /chunk: (.*)\n\n/g });
+        const parser = createReader({ regex: /chunk: (.*)\n\n/g });
         const stream = new TextStream(parser);
         const listener1 = jest.fn();
         stream.addChunkListener(listener1);
@@ -31,7 +31,7 @@ describe('streams[reader]', function() {
     });
 
     test('custom message processor with reader', () => {
-        const parser = createParser({
+        const parser = createReader({
             messageProcessor: JSON.parse
         });
         const stream = new TextStream(parser);
@@ -46,7 +46,7 @@ describe('streams[reader]', function() {
         // expect(listener1).toHaveBeenNthCalledWith(3, [{ 'content': 'the last' }]);
     });
     test('custom data regex and message processor with reader', () => {
-        const parser = createParser({
+        const parser = createReader({
             regex: /chunk: (.*)\n\n/g,
             messageProcessor: JSON.parse
         });

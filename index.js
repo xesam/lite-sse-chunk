@@ -1,7 +1,7 @@
 const { TextStream } = require('./src/streams');
 const { ThrottleThrough } = require('./src/through');
-const { createParser } = require('./src/readers');
+const { createReader } = require('./src/readers');
 
-exports.createParser = createParser;
+exports.createReader = createReader;
 exports.TextStream = TextStream;
 exports.ThrottleThrough = ThrottleThrough;

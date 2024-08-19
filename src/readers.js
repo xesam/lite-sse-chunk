@@ -39,5 +39,5 @@ function createReader(option = {}) {
     };
 }
 
-exports.createParser = createReader;
+exports.createReader = createReader;
 exports.simpleReader = createReader();

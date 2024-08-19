@@ -9,10 +9,10 @@ class TextStream {
     }
 
     receive(text) {
-        const { chunkMessages, uncompleted } = this._chunkReader(text, this._uncompleted);
-        this._completed_messages.push(...chunkMessages);
+        const { messages, uncompleted } = this._chunkReader(text, this._uncompleted);
+        this._completed_messages.push(...messages);
         this._uncompleted = uncompleted;
-        this._listeners.forEach((listener) => listener(chunkMessages));
+        this._listeners.forEach((listener) => listener(messages));
     }
 
     addChunkListener(listener) {

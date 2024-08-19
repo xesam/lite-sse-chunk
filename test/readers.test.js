@@ -5,7 +5,7 @@ describe('simpleDataParser', function() {
         const res = simpleReader(extra + 'data: hello\n\n');
 
         expect(res).toEqual({
-            chunkMessages: ['hello'],
+            messages: ['hello'],
             uncompleted: ''
         });
     });
@@ -13,7 +13,7 @@ describe('simpleDataParser', function() {
         const res = simpleReader('lo\n\n', extra + 'data: hel');
 
         expect(res).toEqual({
-            chunkMessages: ['hello'],
+            messages: ['hello'],
             uncompleted: ''
         });
     });
@@ -21,7 +21,7 @@ describe('simpleDataParser', function() {
         const res = simpleReader(extra + 'data: hel');
 
         expect(res).toEqual({
-            chunkMessages: [],
+            messages: [],
             uncompleted: extra + 'data: hel'
         });
     });
@@ -29,7 +29,7 @@ describe('simpleDataParser', function() {
         const res = simpleReader('ta: hel', extra + 'da');
 
         expect(res).toEqual({
-            chunkMessages: [],
+            messages: [],
             uncompleted: extra + 'data: hel'
         });
     });
@@ -37,7 +37,7 @@ describe('simpleDataParser', function() {
         const res = simpleReader(extra + 'data: hello\n\ndata: world!\n\n');
 
         expect(res).toEqual({
-            chunkMessages: ['hello', 'world!'],
+            messages: ['hello', 'world!'],
             uncompleted: ''
         });
     });
@@ -45,7 +45,7 @@ describe('simpleDataParser', function() {
         const res = simpleReader(' hello\n\ndata: world!\n\n', extra + 'data:');
 
         expect(res).toEqual({
-            chunkMessages: ['hello', 'world!'],
+            messages: ['hello', 'world!'],
             uncompleted: ''
         });
     });
@@ -53,7 +53,7 @@ describe('simpleDataParser', function() {
         const res = simpleReader(`data: hello\n\n${extra}data: world!`);
 
         expect(res).toEqual({
-            chunkMessages: ['hello'],
+            messages: ['hello'],
             uncompleted: extra + 'data: world!'
         });
     });
@@ -61,7 +61,7 @@ describe('simpleDataParser', function() {
         const res = simpleReader(`data: hello\n\ndata: world!\n\n${extra}data: my name`);
 
         expect(res).toEqual({
-            chunkMessages: ['hello', 'world!'],
+            messages: ['hello', 'world!'],
             uncompleted: extra + 'data: my name'
         });
     });
@@ -69,7 +69,7 @@ describe('simpleDataParser', function() {
         const res = simpleReader(' hello\n\ndata: world!', extra + 'data:');
 
         expect(res).toEqual({
-            chunkMessages: ['hello'],
+            messages: ['hello'],
             uncompleted: 'data: world!'
         });
     });
@@ -77,7 +77,7 @@ describe('simpleDataParser', function() {
         const res = simpleReader(' hello\n\ndata: world!\n\ndata: my name', extra + 'data:');
 
         expect(res).toEqual({
-            chunkMessages: ['hello', 'world!'],
+            messages: ['hello', 'world!'],
             uncompleted: 'data: my name'
         });
     });

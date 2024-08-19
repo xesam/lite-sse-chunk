@@ -33,7 +33,7 @@ function createReader(option = {}) {
         }
 
         return {
-            chunkMessages: completed_messages,
+            messages: completed_messages,
             uncompleted: fullText.substring(matchedLastIndex)
         };
     };

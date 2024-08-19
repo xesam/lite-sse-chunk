@@ -1,7 +1,7 @@
 {
     "name": "lite-sse-chunk",
     "version": "0.0.1",
-    "description": "",
+    "description": "a lite tool to parse sse chunk",
     "main": "index.js",
     "directories": {
         "test": "test"

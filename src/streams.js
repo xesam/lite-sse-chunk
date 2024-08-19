@@ -1,15 +1,15 @@
-const { simpleReader } = require('./readers');
+const { simpleChunkExtractor } = require('./chunk-extractors');
 
 class TextStream {
-    constructor(chunkReader) {
-        this._chunkReader = chunkReader || simpleReader;
+    constructor(chunkExtractor) {
+        this._chunk_extractor = chunkExtractor || simpleChunkExtractor;
         this._completed_messages = [];
         this._uncompleted = '';
         this._listeners = [];
     }
 
     receive(text) {
-        const { messages, uncompleted } = this._chunkReader(text, this._uncompleted);
+        const { messages, uncompleted } = this._chunk_extractor(text, this._uncompleted);
         this._completed_messages.push(...messages);
         this._uncompleted = uncompleted;
         this._listeners.forEach((listener) => listener(messages));

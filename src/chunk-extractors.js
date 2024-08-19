@@ -1,7 +1,7 @@
 const Default_Data_Pattern = () => /data: (.*)\n\n/g;
 
 
-function createReader(option = {}) {
+function createRegexExtractor(option = {}) {
     let regexFactory;
     const regex = option.regex || Default_Data_Pattern;
     const messageProcessor = option.messageProcessor;
@@ -39,5 +39,5 @@ function createReader(option = {}) {
     };
 }
 
-exports.createReader = createReader;
-exports.simpleReader = createReader();
+exports.createRegexExtractor = createRegexExtractor;
+exports.simpleChunkExtractor = createRegexExtractor();

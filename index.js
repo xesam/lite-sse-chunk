@@ -1,7 +1,7 @@
 const { TextStream } = require('./src/streams');
 const { ThrottleThrough } = require('./src/through');
-const { createReader } = require('./src/readers');
+const { createRegexExtractor } = require('./src/chunk-extractors');
 
-exports.createReader = createReader;
+exports.createReader = createRegexExtractor;
 exports.TextStream = TextStream;
 exports.ThrottleThrough = ThrottleThrough;

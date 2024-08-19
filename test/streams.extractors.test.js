@@ -1,6 +1,6 @@
 const { TextStream, createReader } = require('..');
 
-describe('streams[reader]', function() {
+describe('streams[chunk-extractors]', function() {
     function createTestChunks(prefix = 'data: ') {
         const messages = [
             {
@@ -42,8 +42,6 @@ describe('streams[reader]', function() {
             stream.receive(chunk);
         }
         expect(listener1).toHaveBeenNthCalledWith(1, [{ 'content': 'hello' }]);
-        // expect(listener1).toHaveBeenNthCalledWith(2, [{ 'content': 'world!' }]);
-        // expect(listener1).toHaveBeenNthCalledWith(3, [{ 'content': 'the last' }]);
     });
     test('custom data regex and message processor with reader', () => {
         const parser = createReader({
@@ -58,7 +56,5 @@ describe('streams[reader]', function() {
             stream.receive(chunk);
         }
         expect(listener1).toHaveBeenNthCalledWith(1, [{ 'content': 'hello' }]);
-        // expect(listener1).toHaveBeenNthCalledWith(2, [{ 'content': 'world!' }]);
-        // expect(listener1).toHaveBeenNthCalledWith(3, [{ 'content': 'the last' }]);
     });
 });

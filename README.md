@@ -44,7 +44,7 @@ theSource.on('chunk', (chunk) => {
 ### custom chunk read
 
 ```javascript
-const { TextStream, createReader } = require('lite-sse-chunk');
+const { TextStream, createRegexExtractor } = require('lite-sse-chunk');
 const reader = createParser(/xxxx: (.*)\n\n/g);
 const stream = new TextStream(reader);
 stream.addChunkListener((messages) => {

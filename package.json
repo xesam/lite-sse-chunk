@@ -1,6 +1,6 @@
 {
   "name": "lite-sse-chunk",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a lite tool to parse sse chunk",
   "main": "index.js",
   "directories": {
@@ -21,12 +21,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+git@github.com:xesam/lite-sse-chunk.js"
+    "url": "git+git@github.com:xesam/lite-sse-chunk"
   },
   "bugs": {
-    "url": "https://github.com/xesam/lite-sse-chunk.js"
+    "url": "https://github.com/xesam/lite-sse-chunk"
   },
-  "homepage": "https://github.com/xesam/lite-sse-chunk.js",
+  "homepage": "https://github.com/xesam/lite-sse-chunk",
   "author": "xesam",
   "email": "xesamguo@gmail.com",
   "license": "MIT"
